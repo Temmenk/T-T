@@ -25,12 +25,11 @@ public class DragLine : MonoBehaviour
         if (_bird.IsDragging) // Check if the bird is being dragged
         {
             _lineRenderer.enabled = true; // Enable the line renderer to show the line
-            _lineRenderer.SetPosition(0, _bird.transform.position); // Set the first position of the line to the position of the Bird
+            _lineRenderer.SetPosition(1, _bird.transform.position); // Set the first position of the line to the position of the Bird
         }
         else
         {
             _lineRenderer.enabled = false; // Disable the line renderer when not dragging
         }
-            _lineRenderer.SetPosition(1, _bird.transform.position); // Set the second position of the line to the position of the Bird
     }
 }
