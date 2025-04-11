@@ -12,14 +12,29 @@ public class Monster : MonoBehaviour
     
     bool _hasDied;
     [SerializeField] float _maxFallDistance = 10f;
-    
-    float _startY; // Store the initial Y position of the monster
 
-    void Start()
+    void OnMouseDown()
     {
-        _startY = transform.position.y; // Store the initial Y position of the monster
+        GetComponent<AudioSource>().Play(); // Play the audio clip attached to the AudioSource component
     }
 
+    IEnumerator Start()
+    {
+        while(_hasDied == false)
+        {
+            float delay = UnityEngine.Random.Range(5, 30); // Random delay between 5 and 30 seconds
+            yield return new WaitForSeconds(delay);
+            if (_hasDied == false)
+            {
+                 
+                GetComponent<AudioSource>().Play(); // Play the audio clip attached to the AudioSource component
+            }
+        }   
+        
+    }
+    float _startY; // Store the initial Y position of the monster
+
+   
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (ShouldDieFromCollision(collision))

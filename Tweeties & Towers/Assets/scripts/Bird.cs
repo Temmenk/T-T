@@ -11,6 +11,8 @@ public class Bird : MonoBehaviour
 
     SpriteRenderer _spriteRenderer;
 
+    public bool IsDragging { get; private set; }
+
     void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to this GameObject
@@ -27,6 +29,8 @@ public class Bird : MonoBehaviour
     void OnMouseDown()
     {
         _spriteRenderer.color = Color.red; // Change the color of the sprite to red when clicked
+        IsDragging = true; // Set the dragging state to true
+
     }
     void OnMouseUp()
     {
@@ -36,8 +40,12 @@ public class Bird : MonoBehaviour
         
         _rigidbody2D.isKinematic = false; // Set the Rigidbody2D to non-kinematic mode to allow physics interactions
         _rigidbody2D.AddForce(direction * _launchForce); // Apply a force in the direction of the start position
+                
+        var audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to this GameObject
+        audioSource.Play(); // Play the audio clip attached to the AudioSource component
         
         _spriteRenderer.color = Color.white; // Change the color of the sprite back to white when released
+        IsDragging = false; // Set the dragging state to false
 
         
     }
