@@ -43,6 +43,7 @@ public class Bird : MonoBehaviour
                 
         var audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to this GameObject
         audioSource.Play(); // Play the audio clip attached to the AudioSource component
+        FindObjectOfType<LevelController>().BirdLaunched(); // Call the BirdLaunched method on the LevelController to notify that the bird has been launched
         
         _spriteRenderer.color = Color.white; // Change the color of the sprite back to white when released
         IsDragging = false; // Set the dragging state to false
